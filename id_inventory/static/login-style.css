@@ -1,0 +1,22 @@
+.vertical-center {
+	min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+	/* min-height: 100vh; These two lines are counted as one :-)       */
+	margin-top: 5em;
+	display: flex;
+	align-items: center;
+}
+
+.mainForm {
+    max-width: 500px;
+	background-color: #F7F7F7;
+	padding: 2em;
+	padding-top: 1em;
+}
+
+form {
+	margin-top: 1.5em;
+}
+
+h1 {
+	font-family: monospace;
+}

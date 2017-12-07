@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block customCSS %}
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link href="{% static 'css_forms.css' %}" rel="stylesheet">
+{% endblock customCSS %}
+
+{% block customJQuery %}
+    <script src="{% static 'clipboard.min.js' %}"></script>
+    <script src="{% static 'js_forms.js' %}"></script>
+{% endblock customJQuery %}
+
+{% block content %}
+        <!-- Page Content -->
+        <div id="view-form-wrapper">
+            <div class="view-form">
+                <form action="">
+                    <legend>{{ legend }}</legend>
+                    {% for key, value in records.items %}
+                        {% for vk, vv in value.items %}
+                        <div class="view-form-field">
+                            <label for="{{ key }}" class="field-label control-label">{{ vk }}</label>
+                            <input id="{{ key }}" readonly type="text" class="field-input form-control" value="{{ vv }}">
+                        </div>
+                        {% endfor %}
+                    {% endfor %}
+                        <a href="{% url 'app_cards:add_print_history_from_form' pk=form_pk %}" class="btn btn-primary pull-right add-to-history">Add to print history</a>
+                </form>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+{% endblock content %}

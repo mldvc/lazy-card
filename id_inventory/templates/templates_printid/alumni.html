@@ -1,0 +1,41 @@
+{% extends "templates_printid\print_id.html" %}
+{% load staticfiles %}
+
+{% block layout %}
+        <div class="preview pull-left">
+            <div id="front">
+                <div class="pic-wrapper alumni">
+                    <img id="result-picture" class="alumni" src="{{ dictData.picture }}" alt="picture">
+                </div>
+                <div class="sig-wrapper">
+                    <canvas id="result-sig" x="300" y="90" class="alumni"></canvas>
+                </div>
+                <div class="name-wrapper">
+                    <p id="name" class="alumni">{{ dictData.full_name }}</p>
+                </div>
+                <div class="under-name-wrapper">
+                    <p id="under-name" class="alumni">{{ dictData.course }}</p>
+                </div>
+                <p id="id-number" class="alumni">{{ dictData.id_number }}</p>
+                <p id="year-grad" class="alumni">{{ dictData.year_grad }}</p>
+                <img id="student-front" src="{{ layout_front }}" alt="student_front">
+            </div>
+            <div id="back">
+                <p id="date-of-birth" class="alumni">{{ dictData.birth_day }}</p>
+                <div class="cnum-wrapper alumni">
+                    <p id="cnum">{{ dictData.contact_num }}</p>
+                </div>
+                <div class="ptn-wrapper-alumni">
+                    <p id="ptn">{{ dictData.ptn }}</p>
+                </div>
+                <div class="address-wrapper alumni">
+                    <p id="address">{{ dictData.address }}</p>
+                </div>
+                <div class="ptn-cnum-wrapper alumni">
+                    <p id="ptn-cnum">{{ dictData.ptn_cnum }}</p>
+                </div>
+                <p id="blood-type" class="alumni">{{ dictData.blood_type }}</p>
+                <img id="student-back" src="{{ layout_back }}" alt="student_front">
+            </div>
+        </div>
+{% endblock layout %}

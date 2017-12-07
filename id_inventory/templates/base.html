@@ -1,0 +1,143 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Lazy Card by MLCapia</title>
+
+    <!-- BOOTSTRAP CSS -->
+    <link href="{% static 'bootstrap-custom.css' %}" rel="stylesheet">
+    <!-- jQuery UI CSS -->
+    <link href="{% static 'jquery-ui.min.css' %}" rel="stylesheet">
+    <!-- MAIN CSS -->
+    <link href="{% static 'main.css' %}" rel="stylesheet">
+    <!-- CUSTOM CSS -->
+    {% block customCSS %}
+    {% endblock customCSS %}
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="{%  static 'favicon.svg' %}">
+
+    <!-- jQuery -->
+    <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'jquery-ui.min.js' %}"></script>
+    <!-- BOOTSTRAP JS -->
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap-confirmation.min.js' %}"></script>
+    <!-- CUSTOM SCRIPT -->
+    {% block customJQuery %}
+    {% endblock customJQuery %}
+    <!-- MAIN SCRIPT -->
+    <script src="{% static 'script.js' %}"></script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- logo -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!--<a href="#menu-toggle" class="btn btn-default pull-left" id="menu-toggle">a</a>-->
+                    <!--<a href="{% url 'app_overview:overview' %}" class="navbar-brand">
+                        <span class="glyphicon glyphicon-send"></span>&nbsp;IDMS
+                    </a>-->
+                    <a href="{% url 'app_overview:overview' %}" class="navbar-brand">
+                        <img id="logo-svg" src="{% static 'logo.svg' %}" alt="svg">
+                    </a>
+                </div>
+                    <!-- Menu Items -->
+                <div class="collapse navbar-collapse" id="mainNavBar">
+                    <!-- Login/Logout buttons -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.get_short_name }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-off"></span>&nbsp;Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Sidebar -->
+        <div class="main">
+            <div id="sidebar-wrapper">
+                <nav class="navbar navbar-default sidebar" role="navigation">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li class="nodrop active side-dashboard">
+                                    <a href="{% url 'app_overview:overview' %}" class="main-side-menu">
+                                        Dashboard
+                                        <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th">
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="dropdown cards-dropdown">
+                                    <a href="#" class="main-side-menu dropdown-toggle" data-toggle="dropdown">
+                                        Cards <span class="caret"></span>
+                                        <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-credit-card"></span>
+                                    </a>
+                                    <ul class="sub-side-menu dropdown-menu forAnimate" role="menu">
+                                        <li><a href="{% url 'app_cards:cards' %}" class="dropdown_link">Use Records</a></li>
+                                        <li><a href="{% url 'app_cards:app_card_inventory:stocks' %}" class="dropdown_link">Stock Management</a></li>
+                                        <!-- <li class="divider"></li> -->
+                                        <li><a href="{% url 'app_cards:app_print_record:report' %}" class="dropdown_link">Reports</a></li>
+                                    </ul>
+                                </li>          
+                                <li class="dropdown ribbons-dropdown">
+                                    <a href="#" class="main-side-menu dropdown-toggle" data-toggle="dropdown">
+                                        Ribbons <span class="caret"></span>
+                                        <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cd"></span>
+                                    </a>
+                                    <ul class="sub-side-menu dropdown-menu forAnimate" role="menu">
+                                        <li><a href="{% url 'app_ribbons:ribbons' %}" class="dropdown_link">Ribbon Usage</a></li>
+                                        <li><a href="{% url 'app_ribbons:app_ribbon_inventory:stocks' %}" class="dropdown_link">Stock Management</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown ribbons-dropdown">
+                                    <a href="#" class="main-side-menu dropdown-toggle" data-toggle="dropdown">
+                                        Forms <span class="caret"></span>
+                                        <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list-alt"></span>
+                                    </a>
+                                    <ul class="sub-side-menu dropdown-menu forAnimate" role="menu">
+                                        <li><a href="{% url 'app_id_form:forms' %}" class="dropdown_link">Forms</a></li>
+                                        <li><a href="{% url 'app_id_form:select_form_type' %}" class="dropdown_link">Add Form</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nodrop side-admin">
+                                    <a href="{% url 'admin:index' %}" class="main-side-menu">Administration<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                  </div>
+                </nav>
+            </div>
+
+            <!-- /#sidebar-wrapper -->
+
+            <!-- Main Content -->
+            {% block content %}
+
+            {% endblock content %}
+            <!-- /#main content -->
+        </div>
+    </div>
+    <!-- /#wrapper -->
+</body>
+
+</html>

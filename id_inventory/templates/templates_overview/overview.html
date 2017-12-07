@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block customCSS %}
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+{% endblock customCSS %}
+
+{% block customJQuery %}
+    <script type="text/javascript" language="JavaScript" src="{% static 'chart.min.js' %}"></script>
+    <script type="text/javascript" language="JavaScript" src="{% static 'js-dashboard.js' %}"></script>
+{% endblock customJQuery %}
+
+{% block content %}
+        <!-- Page Content -->
+        <div id="overview-dashboard" class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="status-wrapper">
+                        <h3 class="status-label">Card Stocks</h3>
+                        <div class="status-box">
+                            {% for card in cards %}
+                            <div class="status-type">
+                                <p class="status-value">{{ card.amount }}</p>
+                                <p class="status-value-label">{{ card.card_type }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="status-wrapper">
+                        <h3 class="status-label">Active Cards</h3>
+                        <div class="status-box">
+                            {% for card in active %}
+                            <div class="status-type">
+                                <p class="status-value">{{ card.amount }}</p>
+                                <p class="status-value-label">{{ card.card_type }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="status-wrapper">
+                        <h3 class="status-label">Ribbon Stocks</h3>
+                        <div class="status-box">
+                            {% for ribbon in ribbons %}
+                            <div class="status-type">
+                                <p class="status-value">{{ ribbon.amount }}</p>
+                                <p class="status-value-label">{{ ribbon.ribbon_type }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="charts" class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="chart">
+                        <canvas id="id-total-chart" width="600" height="200"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart">
+                        <canvas id="id-spr-chart" width="600" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="chart chart-total">
+                        <canvas id="id-sp-chart" width="600" height="100"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+{% endblock content %}

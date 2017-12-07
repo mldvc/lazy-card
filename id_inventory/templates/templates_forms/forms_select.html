@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load i18n widget_tweaks %}
+{% load staticfiles %}
+
+{% block customCSS %}
+    <link href="{% static 'css_forms.css' %}" rel="stylesheet">
+{% endblock customCSS %}
+
+{% block customJQuery %}
+    <script src="{% static 'js_forms.js' %}"></script>
+{% endblock customJQuery %}
+
+{% block content %}
+        <!-- Page Content -->
+        <div id="add-form-wrapper">
+            {% for message in messages %}
+              <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <p id="success-msg">
+                <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>&nbsp;{{ message }}
+                </p>
+              </div>
+            {% endfor %}
+            <div id="select-form-wrapper">
+                <div class="select-form">
+                    <form class="form-horizontal" role="form" action="" method="POST">
+                    <legend>Select ID Type</legend>
+                        {% csrf_token %}
+                        {% for field in form %}
+                            {% if field.errors %}
+                                <div class="form-input">
+                                    {{ field|attr:"class:form-control" }}
+                                    <span class="help-block">
+                                        {% for error in  field.errors %}{{ error }}{% endfor %}
+                                    </span>
+                                </div>
+                            {% else %}
+                                <div class="form-input">
+                                    {{ field|attr:"class:form-control" }}
+                                    {% if field.help_text %}
+                                        <p class="help-block"><small>{{ field.help_text }}</small></p>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                            <div class="form-button">
+                                <button name="btnSelect" type="submit" class="btn btn-primary" id="btnSelect"><span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;Select and Proceed</button>
+                            </div>
+                        <div class="form-warning">
+                            <p>
+                                <span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;
+                                Please, be sure to double check your inputs before submitting your form. If there is an error in your ID it is not our fault.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+{% endblock content %}

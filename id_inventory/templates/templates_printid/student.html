@@ -1,0 +1,46 @@
+{% extends "templates_printid\print_id.html" %}
+{% load staticfiles %}
+
+{% block layout %}
+        <div class="preview pull-left">
+            <div id="front">
+                <div class="pic-wrapper">
+                    <img id="result-picture" src="{{ dictData.picture }}" alt="picture">
+                </div>
+                <div class="sig-wrapper">
+                    <canvas id="result-sig" x="300" y="90"></canvas>
+                </div>
+                <div class="name-wrapper">
+                    <p id="name">{{ dictData.full_name }}</p>
+                </div>
+                <div class="under-name-wrapper">
+                    {% if dictData.course %}
+                        <p id="under-name">{{ dictData.course }}</p>
+                    {% elif dictData.strand %}
+                        <p id="under-name">{{ dictData.strand }}</p>
+                    {% elif dictData.level %}
+                        <p id="under-name">{{ dictData.level }}</p>
+                    {% endif %}
+                </div>
+                <p id="id-number">{{ dictData.id_number }}</p>
+                <p id="date-of-birth">{{ dictData.birth_day }}</p>
+                <p id="validity">{{ dictData.validity }}</p>
+                <img id="student-front" src="{{ layout_front }}" alt="student_front">
+            </div>
+            <div id="back">
+                <div class="ptn-wrapper">
+                    <p id="ptn">{{ dictData.ptn }}</p>
+                </div>
+                <div class="address-wrapper">
+                    <p id="address">{{ dictData.address }}</p>
+                </div>
+                <div class="ptn-cnum-wrapper">
+                    <p id="ptn-cnum">{{ dictData.ptn_cnum }}</p>
+                </div>
+                <div class="blood-type-wrapper">
+                    <p id="blood-type">{{ dictData.blood_type }}</p>
+                </div>
+                <img id="student-back" src="{{ layout_back }}" alt="student_front">
+            </div>
+        </div>
+{% endblock layout %}

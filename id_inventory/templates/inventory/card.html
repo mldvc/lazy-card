@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block customCSS %}
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+{% endblock customCSS %}
+
+{% block content %}
+    <a href="{% url 'logout' %}" id="logout">Log out</a>
+    <div class="clearfix">
+        <div id="sidemenu">
+            <div class="cards">
+                <table>
+                    <tr>
+                        <th>ID Cards</th>
+                        <th>Amount</th>
+                    </tr>
+                    {% for id_card in item_cards %}
+                    <tr>
+                        <td>
+                            <!-- <a href=" url 'item_detail' item.id %}"> -->
+                                {{ id_card.card_type |capfirst }}
+                            <!-- </a> -->
+                        </td>
+                        <td>
+                            {{ id_card.amount }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <section>
+            <div class="datagrid">
+                <div id="form">
+                    <form action="{% url 'card_inventory:card' %}" method="post">
+                        {% csrf_token %}
+                        <select name="card_type">
+                            {% for cardType in item_cards %}
+                                <option value="{{ cardType.card_type }}">{{ cardType.card_type }}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="Submit" class="btn btn-submit">                
+                    </form>
+                </div>                
+                <table class="table">
+                    <tr>
+                        <th>Card Type</th>                        
+                        <th>RTP Date</th>
+                        <th>Received Date</th>
+                        <th>No. of Box</th>
+                        <th>No. of Cards</th>   
+                    </tr>
+                    {% for records in item_records %}
+                    <tr>
+                        <td>
+                            {{ records.card |capfirst }}
+                        </td>
+                        <td>
+                            {{ records.rtp_date }}
+                        </td>                        
+                        <td>
+                            {{ records.received_date }}                            
+                        </td>
+                        <td>
+                            {{ records.received_box_amount }}                            
+                        </td>
+                        <td>
+                            {{ records.received_amount }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+    </div>
+{% endblock %}

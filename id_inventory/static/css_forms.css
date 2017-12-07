@@ -1,0 +1,148 @@
+.main {
+	margin: 0;
+}
+
+#add-form-wrapper {
+	margin-top: 50px;
+	width: 100%;
+}
+
+legend {
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.form-warning {
+	display: flex;
+	font-size: 1.1em;
+	text-align: center;
+}
+
+.form-warning p {
+	margin: auto;
+	max-width: 530px;
+}
+
+/*FOR VIEW FORM*/
+#view-form-wrapper {
+	margin-top: 50px;
+	margin-left: 40px;
+	display: flex;
+}
+
+#view-form-wrapper .view-form {
+	margin: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 50%;
+	display: flex;
+}
+
+#view-form-wrapper .view-form form {
+	width: 100%;
+}
+
+.view-form-field {
+	display: flex;
+	/*justify-content: space-between;*/
+	margin-top: 10px;
+}
+
+.field-label {
+	margin: 0px;
+	flex: 1;
+	padding: 6px 12px 6px 12px;
+}
+
+.field-input {
+	flex: 3;
+}
+
+.view-form-field input.field-input:hover {
+	background-color: rgb(0, 191, 255);
+	color: #fff;
+	cursor: pointer;
+}
+
+.view-form-field input.field-copy-active,
+.view-form-field input.field-copy-active:active {
+	background-color: rgb(0, 172, 230);
+	color: #fff;
+}
+
+.field-copy-active:focus {
+	background-color: rgb(0, 153, 204);
+	color: #fff;
+}
+
+.field-copy-active:hover {
+	background-color: rgb(0, 191, 255);
+	color: #fff;
+}
+
+a.add-to-history {
+	margin: 10px 0 0 0;
+}
+/*END OF VIEW FORM*/
+
+
+/*FOR SELECT FORM*/
+#select-form-wrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+.select-form {
+	border-radius: 10px;
+	padding: 10px;
+	background-color: #eee;
+	margin: auto;
+	margin-top: 10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	max-width: 600px;
+	max-height: 600px;
+	flex-basis: 50%;
+}
+
+.form-input {
+	display: flex;
+	justify-content: space-between;
+}
+
+.form-input select{
+	margin: auto;
+	flex-basis: 50%;
+}
+
+.form-button, .form-warning {
+	display: flex;
+	margin: 10px 0px 0px 0px;
+}
+
+#btnSelect, .form-warning p {
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#success-msg {
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

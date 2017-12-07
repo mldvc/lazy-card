@@ -1,0 +1,697 @@
+#print-id-wrapper {
+	padding: 10px;
+	margin-top: 50px;
+}
+
+div.controls {
+	margin-left: 10px;
+	display: inline-block;
+}
+
+img#student-front, img#student-back {
+	z-index: -1;
+	width: 488px;
+}
+
+img#portrait-front.hospital, img#portrait-back.hospital {
+	z-index: -1;
+	width: 307px;
+}
+
+div#front, div#back {
+	margin: 0px;
+	padding: 0px;
+}
+
+p#id-number,
+p#date-of-birth,
+p#validity,
+p#year-grad.alumni,
+p#date-of-birth.alumni,
+p#contact-number.alumni,
+p#blood-type.alumni,
+p#last-name.hospital,
+p#first-name.hospital,
+p#middle-name.hospital,
+p#position.hospital,
+p#department.hospital,
+p#ptn-hospital,
+p#dob-hospital,
+p#cnum-hospital,
+p#address-hospital,
+p#ptn-cnum-hospital,
+p#blood-type-hospital,
+p#tin-hospital,
+p#sss-hospital {
+	position: absolute;
+}
+
+div.pic-wrapper {
+	display: flex;
+	position: absolute;
+	margin-left: 25px;
+	margin-top: 119px;
+	width: 133px;
+	height: 188px;
+	overflow: hidden;
+}
+
+div.pic-wrapper.alumni {
+	display: flex;
+	position: absolute;
+	margin-left: 6px;
+	margin-top: 85px;
+	width: 142px;
+	height: 190px;
+	overflow: hidden;
+}
+
+div.pic-wrapper.plus {
+	display: flex;
+	position: absolute;
+	margin-left: 7px;
+	margin-top: 120px;
+	width: 142px;
+	height: 187px;
+	overflow: hidden;
+}
+
+div.pic-wrapper.hospital {
+	display: flex;
+	position: absolute;
+	margin-left: 95px;
+	margin-top: 125px;
+	width: 130px;
+	height: 170px;
+	overflow: hidden;
+}
+
+#dialog-confirm {
+	display: none;
+}
+
+img#result-picture {
+	height: 150%;
+	position: absolute;
+    text-align: center;
+}
+
+div.sig-wrapper {
+	display: flex;
+	position: absolute;
+	width: 300px;
+	height: 90px;
+	margin-top: 205px;
+	margin-left: 265px;
+	overflow: hidden;
+}
+
+div.sig-wrapper.hospital {
+	display: flex;
+	position: absolute;
+	width: 150px;
+	height: 45px;
+	margin-top: 260px;
+	margin-left: 80px;
+	overflow: hidden;
+}
+
+canvas#result-sig {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+div.name-wrapper {
+	display: flex;
+	position: absolute;
+	margin-top: 125px;
+	margin-left: 165px;
+	width: 310px;
+	min-height: 42px;
+}
+
+p#name {
+	flex: 1;
+	color: #fff;
+	text-align: center;
+	font-weight: bold;
+	font-size: 30px;
+	margin: auto;
+}
+
+p#name.alumni {
+	color: #136034;
+}
+
+p#name.plus {
+	color: #136034;
+}
+
+p#name.hospital {
+	flex: 1;
+	color: #000;
+	text-align: center;
+	font-weight: bold;
+	font-size: 30px;
+	margin: auto;
+}
+
+div.under-name-wrapper {
+	display: flex;
+	position: absolute;
+	margin-top: 165px;
+	margin-left: 181px;
+	width: 280px;
+	min-height: 24px;
+}
+
+p#under-name {
+	flex: 1;
+	color: yellow;
+	text-align: center;
+	font-weight: bold;
+	margin: auto;
+	font-size: 17px;
+}
+
+p#under-name.alumni {
+	color: #000;
+}
+
+p#under-name.plus {
+	color: #000;
+}
+
+p#id-number {
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 265px;
+	margin-top: 85px;
+	color: #000;
+}
+
+/*Hospital / Portrait*/
+
+p#id-number.hospital {
+	font-size: 12px;
+	font-weight: bold;
+	margin-left: 170px;
+	margin-top: 100px;
+	color: #000;
+}
+
+p#last-name.hospital {
+	font-size: 12px;
+	font-weight: bold;
+	margin-left: 120px;
+	margin-top: 310px;
+	color: #000;
+}
+
+p#first-name.hospital {
+	font-size: 12px;
+	font-weight: bold;
+	margin-left: 120px;
+	margin-top: 332px;
+	color: #000;
+}
+
+p#middle-name.hospital {
+	font-size: 12px;
+	font-weight: bold;
+	margin-left: 120px;
+	margin-top: 354px;
+	color: #000;
+}
+
+p#department.hospital {
+	font-size: 12px;
+	font-weight: bold;
+	margin-left: 120px;
+	margin-top: 384px;
+	color: #000;
+}
+
+p#position.hospital {
+	font-size: 12px;
+	font-weight: bold;
+	margin-left: 120px;
+	margin-top: 402px;
+	color: #000;
+}
+
+p#ptn-hospital {
+	font-size: 9px;
+	font-weight: bold;
+	margin-left: 95px;
+	margin-top: 138px;
+	color: #000;
+}
+
+p#address-hospital {
+	font-size: 9px;
+	font-weight: bold;
+	margin-left: 95px;
+	margin-top: 153px;
+	color: #000;
+}
+
+p#ptn-cnum-hospital {
+	font-size: 9px;
+	font-weight: bold;
+	margin-left: 95px;
+	margin-top: 170px;
+	color: #000;
+}
+
+p#tin-hospital {
+	font-size: 9px;
+	font-weight: bold;
+	margin-left: 95px;
+	margin-top: 200px;
+	color: #000;
+}
+
+p#sss-hospital {
+	font-size: 9px;
+	font-weight: bold;
+	margin-left: 95px;
+	margin-top: 214px;
+	color: #000;
+}
+
+p#blood-type-hospital {
+	font-size: 9px;
+	font-weight: bold;
+	margin-left: 95px;
+	margin-top: 227px;
+	color: #000;
+}
+
+p#blood-type-hospital {
+	font-size: 9px;
+	font-weight: bold;
+	margin-left: 95px;
+	margin-top: 227px;
+	color: #000;
+}
+
+p#dob-hospital {
+	font-size: 9px;
+	font-weight: bold;
+	margin-left: 95px;
+	margin-top: 240px;
+	color: #000;
+}
+
+/*!Hospital / Portrait*/
+
+p#id-number.alumni {
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 55px;
+	margin-top: 278px;
+	color: #000;
+}
+
+p#date-of-birth {
+	color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 215px;
+	margin-left: 166px;
+}
+
+p#date-of-birth.alumni {
+	color: #000;
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 30px;
+	margin-left: 30px;	
+}
+
+p#blood-type.alumni {
+	color: #000;
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 30px;
+	margin-left: 385px;	
+}
+
+
+p#validity {
+	color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 248px;
+	margin-left: 166px;
+}
+
+p#validity.plus {
+	color: #136034;
+}
+
+/*FOR EMPLOYEE*/
+div.unit-wrapper.employee {
+	display: flex;
+	position: absolute;
+	margin-top: 248px;
+	margin-left: 166px;
+	min-height: 21px;
+	width: 305px;
+}
+
+p#unit {
+	flex: 1;
+	font-size: 15px;
+	margin: auto;
+	font-weight: bold;
+	color: #fff;
+}
+
+
+div.tin-wrapper {
+	display: flex;
+	position: absolute;
+	margin-top: 110px;
+	margin-left: 17px;
+	width: 220px;
+	font-size: 15px;
+}
+
+p#tin {
+	flex: 1;
+	color: #000;
+	font-weight: bold;
+	margin: auto;
+	text-align: center;
+}
+
+div.sss-wrapper {
+	display: flex;
+	position: absolute;
+	margin-top: 110px;
+	margin-left: 250px;
+	width: 220px;
+	font-size: 15px;
+}
+
+p#sss {
+	flex: 1;
+	color: #000;
+	font-weight: bold;
+	margin: auto;
+	text-align: center;
+}
+
+/*FOR ALUMNI*/
+div.cnum-wrapper.alumni {
+	display: flex;
+	position: absolute;
+	margin-top: 30px;
+	margin-left: 181px;
+	min-width: 140px;
+}
+
+p#cnum {
+	flex: 1;
+	color: #000;
+	font-weight: bold;
+	margin: auto;
+	text-align: center;
+	font-size: 15px;
+}
+
+div.ptn-wrapper-alumni {
+	display: flex;
+	position: absolute;
+	margin-top: 82px;
+	margin-left: 15px;
+	width: 455px;
+	font-size: 15px;
+}
+
+div.ptn-wrapper {
+	display: flex;
+	position: absolute;
+	margin-top: 30px;
+	margin-left: 15px;
+	width: 308px;
+	font-size: 15px;
+}
+
+p#ptn {
+	flex: 1;
+	color: #000;
+	font-weight: bold;
+	margin: auto;
+}
+
+div.ptn-cnum-wrapper {
+	display: flex;
+	position: absolute;
+	margin-top: 48px;
+	margin-left: 15px;
+	width: 308px;
+	font-size: 15px;
+}
+
+div.ptn-cnum-wrapper.alumni {
+	display: flex;
+	position: absolute;
+	margin-top: 99px;
+	margin-left: 15px;
+	width: 455px;
+	font-size: 15px;
+}
+
+p#ptn-cnum {
+	flex: 1;
+	color: #000;
+	font-weight: bold;
+	margin: auto;
+}
+
+div.address-wrapper.alumni {
+	display: flex;
+	position: absolute;
+	margin-top: 117px;
+	margin-left: 15px;
+	min-height: 21px;
+	width: 455px;
+}
+
+div.address-wrapper {
+	display: flex;
+	position: absolute;
+	margin-top: 65px;
+	margin-left: 15px;
+	min-height: 21px;
+	width: 308px;
+}
+
+p#address {
+	flex: 1;
+	color: #000;
+	font-weight: bold;
+	margin: auto;
+	font-size: 15px;
+}
+
+div.blood-type-wrapper {
+	display: flex;
+	position: absolute;
+	margin-top: 35px;
+	margin-left: 360px;
+	font-size: 30px;
+}
+
+p#blood-type {
+	flex: 1;
+	color: #000;
+	font-weight: bold;
+	margin: auto;
+}
+
+p#year-grad.alumni {
+	color: #136034;
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 255px;
+	margin-left: 170px;
+}
+
+/* =============================== FOR CONTROLS =========================== */
+
+div.controls {
+	width: 790px;
+}
+
+div.zoom-slider-wrapper {
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 10px 10px 10px 10px;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+#btnSigPreview {
+	margin-top: 10px;
+	width: 100%;
+}
+
+div.record-wrapper {
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+
+div.sig-controls {
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 10px 10px 10px 10px;
+	width: 100%;
+}
+
+.zoom-slider-wrapper h6 {
+	margin: 0px;
+	color: #526f7a;
+}
+
+
+div.sig-preview-wrapper {
+	background-color: #fff;
+	width: 215px;
+	height: 75px;
+	float: left;
+}
+
+div.sig-position-control {
+	background-color: #f2f2f2;
+	width: 82px;
+	height: 78px;
+	border-radius: 5px;
+	margin-left: 10px;
+	float: right;
+}
+
+img#sig-preview {
+	width: 100%;
+}
+
+button#box1-up {
+	position: absolute;
+	margin-left: 29px;
+	margin-top: 5px;
+}
+
+button#box1-down {
+	position: absolute;
+	margin-top: 51px;
+	margin-left: 29px;
+}
+
+button#box1-left {
+	position: absolute;
+	margin-top: 28px;
+	margin-left: 4px;
+}
+button#box1-right {
+	position: absolute;
+	margin-top: 28px;
+	margin-left: 54px;
+}
+
+button#btn_print {
+	margin-right: 10px;
+	width: 48%;
+}
+
+a#add-history {
+	width: 48%;
+}
+
+.pic-label {
+	font-weight: bold;
+	margin-bottom: 3px;
+	color: #526f7a;
+}
+
+div.form-fields {
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 10px;
+	width: 350px;
+	margin-right: 10px;
+}
+
+div.field-wrapper {
+	display: flex;
+	margin-top: 5px;
+}
+
+div.field-wrapper > input, div.field-wrapper select, div.choose-field {
+	-webkit-flex: 4;
+	-moz-flex: 4;
+	-ms-flex: 4;
+	-o-flex: 4;
+	flex: 4;
+	margin-left: 5px;
+	width: 100%;
+}
+
+div.field-wrapper label {
+	-webkit-flex: 1;
+	-moz-flex: 1;
+	-ms-flex: 1;
+	-o-flex: 1;
+	flex: 1;
+}
+
+div.button-wrapper {
+	padding: 0;
+	display: flex;
+	margin-top: 10px;
+}
+
+button#btnSave {
+	margin: auto;
+}
+
+
+
+/* ---------------------------- FOR PRINT PREVIEW -------------------------------- */
+@media print {
+	body * {
+		visibility: hidden;
+		-webkit-print-color-adjust: exact;
+	}
+
+	img#student-front, img#student-back {
+		max-width: 100%;
+	}
+
+/*	img#portrait-front.hospital, img#portrait-back.hospital {
+		width: 300px;
+	}*/
+
+	div.preview, div.preview * {
+		visibility: visible;
+	}
+
+	div.preview {
+		position: absolute;
+		margin: 0;
+		padding: 0;
+		left: 0;
+		top: 0;
+		border: 0;
+		width: 100%;
+	}
+
+	div.controls {
+		display: none;
+	}
+}

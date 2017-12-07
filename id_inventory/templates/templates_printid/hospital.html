@@ -1,0 +1,33 @@
+{% extends "templates_printid\print_id.html" %}
+{% load staticfiles %}
+
+{% block layout %}
+        <div class="preview pull-left">
+            <div id="front">
+                <div class="pic-wrapper hospital">
+                    <img id="result-picture" class="hospital" src="{{ dictData.picture }}" alt="picture">
+                </div>
+                <p id="id-number" class="hospital">{{ dictData.id_number }}</p>
+                <p id="last-name" class="hospital">{{ dictData.last_name }}</p>
+                <p id="first-name" class="hospital">{{ dictData.first_name }}</p>
+                <p id="middle-name" class="hospital">{{ dictData.middle_name }}</p>
+                <p id="position" class="hospital">{{ dictData.position }}</p>
+                <p id="department" class="hospital">{{ dictData.department }}</p>
+                <img id="portrait-front" class="hospital" src="{{ layout_front }}" alt="hospital_front">
+            </div>
+            <div id="back">
+                <div class="sig-wrapper hospital">
+                    <canvas id="result-sig" x="150" y="45" class="hospital"></canvas>
+                </div>
+                <p id="dob-hospital">{{ dictData.birth_day }}</p>
+                <p id="cnum-hospital">{{ dictData.contact_num }}</p>
+                <p id="ptn-hospital">{{ dictData.ptn }}</p>
+                <p id="address-hospital">{{ dictData.address }}</p>
+                <p id="tin-hospital">{{ dictData.tin }}</p>
+                <p id="sss-hospital">{{ dictData.sss }}</p>
+                <p id="ptn-cnum-hospital">{{ dictData.ptn_cnum }}</p>
+                <p id="blood-type-hospital" class="hospital">{{ dictData.blood_type }}</p>
+                <img id="portrait-back" class="hospital" src="{{ layout_back }}" alt="hospital_front">
+            </div>
+        </div>
+{% endblock layout %}

@@ -1,0 +1,48 @@
+{% extends "templates_printid\print_id.html" %}
+{% load staticfiles %}
+
+{% block layout %}
+        <div class="preview pull-left">
+            <div id="front">
+                <div class="pic-wrapper">
+                    <img id="result-picture" class="employee" src="{{ dictData.picture }}" alt="picture">
+                </div>
+                <div class="sig-wrapper">
+                    <canvas id="result-sig" x="300" y="90"></canvas>
+                </div>
+                <div class="name-wrapper">
+                    <p id="name" class="employee">{{ dictData.full_name }}</p>
+                </div>
+                <div class="under-name-wrapper">
+                    <p id="under-name" class="employee">{{ dictData.position }}</p>
+                </div>
+                <p id="id-number" class="employee">{{ dictData.id_number }}</p>
+                <p id="date-of-birth" class="employee">{{ dictData.birth_day }}</p>
+                <div class="unit-wrapper employee">
+                    <p id="unit">{{ dictData.department }}</p>
+                </div>
+                <img id="student-front" src="{{ layout_front }}" alt="student_front">
+            </div>
+            <div id="back">
+                <div class="ptn-wrapper">
+                    <p id="ptn" class="employee">{{ dictData.ptn }}</p>
+                </div>
+                <div class="address-wrapper">
+                    <p id="address" class="employee">{{ dictData.address }}</p>
+                </div>
+                <div class="ptn-cnum-wrapper">
+                    <p id="ptn-cnum" class="employee">{{ dictData.ptn_cnum }}</p>
+                </div>
+                <div class="blood-type-wrapper">
+                    <p id="blood-type" class="employee">{{ dictData.blood_type }}</p>
+                </div>
+                <div class="tin-wrapper">
+                    <p id="tin" class="employee">{{ dictData.tin }}</p>
+                </div>
+                <div class="sss-wrapper">
+                    <p id="sss" class="employee">{{ dictData.sss }}</p>
+                </div>
+                <img id="student-back" src="{{ layout_back }}" alt="student_front">
+            </div>
+        </div>
+{% endblock layout %}

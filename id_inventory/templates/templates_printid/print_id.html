@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load i18n widget_tweaks %}
+{% load staticfiles %}
+
+{% block customCSS %}
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link href="{% static 'styles/css_printid.css' %}" rel="stylesheet">
+{% endblock customCSS %}
+
+{% block customJQuery %}
+    <script type="text/javascript" language="JavaScript" src="{% static 'webcam.min.js' %}"></script>
+    <script type="text/javascript" language="JavaScript" src="{% static 'js-webcam.js' %}"></script>
+{% endblock customJQuery %}
+
+{% block content %}
+    <!-- Page Content -->
+    <div id="print-id-wrapper">
+
+        {% block layout %}
+            
+        {% endblock layout %}
+
+        <div class="controls container-fluid">
+            <div class="row">
+                <div id="dialog-confirm" title="Add to print records.">
+                  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+                    Please add to print records.
+                  </p>
+                </div>
+                <div class="form-fields col-md-5">
+                    <form role="form" action="." method="POST" enctype='multipart/form-data'>{% csrf_token %}
+                            {% for field in printIDForm %}
+                                {% if field.errors %}
+                                    <div class="field-wrapper has-error">
+                                        <label class="field-label" for="id_{{ field.name }}">{{ field.label }}</label>
+                                        {% if field.label == "signature" or field.label == "picture" %}
+                                            <div class="choose-field">
+                                                {{ field }}
+                                                <span class="help-block">
+                                                    {% for error in  field.errors %}{{ error }}{% endfor %}
+                                                </span>
+                                            </div>
+                                        {% else %}
+                                            {{ field }}
+                                            <span class="help-block">
+                                                {% for error in  field.errors %}{{ error }}{% endfor %}
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                {% else %}
+                                    <div class="field-wrapper">
+                                        <label class="field-label" for="id_{{ field.name }}">{{ field.label }}</label>
+                                        {% if field.label == "Signature" or field.label == "Picture" %}
+                                            <div class="choose-field">
+                                                {{ field }}
+                                                {% if field.help_text %}
+                                                    <p class="help-block"><small>{{ field.help_text }}</small></p>
+                                                {% endif %}
+                                            </div>
+                                        {% else %}
+                                            {{ field }}
+                                            {% if field.help_text %}
+                                                <p class="help-block"><small>{{ field.help_text }}</small></p>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                            <div class="button-wrapper">
+                                <button name="btnSave" type="submit" value="submit" class="btn btn-primary" id="btnSave">
+                                    <span class="glyphicon glyphicon-save" aria-hidden="true"></span>&nbsp;Update
+                                </button>
+                            </div>
+                        </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="record-wrapper">
+                            <button id="btn_print" class="btn btn-success">
+                                <span class="glyphicon glyphicon-print" aria-hidden="true"></span>&nbsp;&nbsp;{% trans "Print ID" %}
+                            </button>
+                            <a id="add-history" href="{% url 'app_cards:add_print_history_from_form' pk=data_pk %}" class="btn btn-danger add-to-history"><span class="glyphicon glyphicon-save" aria-hidden="true"></span>&nbsp;&nbsp;Add to print history</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h5 class="pic-label">Picture Control</h5>
+                        <div class="zoom-slider-wrapper">
+                            <h6>Zoom Slider</h6>
+                            <div id="zoom-slider"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h5 class="pic-label">Signature Control</h5>
+                        <div class="sig-controls">
+                            <div class="sig-preview-wrapper">
+                                <img id="sig-preview" type="{{ dictData.id_type }}" src="{{ dictData.signature }}" alt="signature">
+                            </div>
+                            <div class="sig-position-control">
+                                <button id="box1-up" class="btn btn-xs"><span class="glyphicon glyphicon-chevron-up aria-hidden="true""></span></button>
+                                <button id="box1-down" class="btn btn-xs"><span class="glyphicon glyphicon-chevron-down aria-hidden="true""></span></button>
+                                <button id="box1-left" class="btn btn-xs"><span class="glyphicon glyphicon-chevron-left aria-hidden="true""></span></button>
+                                <button id="box1-right" class="btn btn-xs"><span class="glyphicon glyphicon-chevron-right aria-hidden="true""></span></button>
+                            </div>
+                            <button id="btnSigPreview" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-paperclip aria-hidden="true""></span>&nbsp;Add Signature to Layout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+{% endblock content %}

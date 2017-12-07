@@ -1,0 +1,26 @@
+{% extends "templates_printid\print_id.html" %}
+{% load staticfiles %}
+
+{% block layout %}
+        <div class="preview pull-left">
+            <div id="front">
+                <div class="pic-wrapper plus">
+                    <img id="result-picture" class="plus" src="{{ dictData.picture }}" alt="picture">
+                </div>
+                <div class="sig-wrapper">
+                    <canvas id="result-sig" x="300" y="90" class="plus"></canvas>
+                </div>
+                <div class="name-wrapper">
+                    <p id="name" class="plus">{{ dictData.full_name }}</p>
+                </div>
+                <div class="under-name-wrapper">
+                    <p id="under-name" class="plus">{{ dictData.id_number }}</p>
+                </div>
+                <p id="validity" class="plus">{{ dictData.alu_validity }}</p>
+                <img id="student-front" src="{{ layout_front }}" alt="student_front">
+            </div>
+            <div id="back">
+                <img id="student-back" src="{{ layout_back }}" alt="student_front">
+            </div>
+        </div>
+{% endblock layout %}

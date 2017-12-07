@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load i18n widget_tweaks %}
+{% load staticfiles %}
+
+{% block customCSS %}
+    <link href="{% static 'css_forms.css' %}" rel="stylesheet">
+{% endblock customCSS %}
+
+{% block customJQuery %}
+    <script src="{% static 'js_forms.js' %}"></script>
+{% endblock customJQuery %}
+
+{% block content %}
+        <!-- Page Content -->
+        <div id="add-form-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div id="form-wrapper">
+                        <form class="form-horizontal" role="form" action="" method="post" filter-field-url="{% url 'app_id_form:filter_field' %}">
+                        <legend>{{ legend }}</legend>
+                            {% csrf_token %}
+                            {% for field in form %}
+                                {% if field.errors %}
+                                    <div class="form-group has-error">
+                                        <label class="col-sm-4 control-label" for="id_{{ field.name }}">{{ field.label }}</label>
+                                        <div class="col-sm-4">
+                                            {{ field|attr:"class:form-control" }}
+                                            <span class="help-block">
+                                                {% for error in  field.errors %}{{ error }}{% endfor %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="id_{{ field.name }}">{{ field.label }}</label>
+                                        <div class="col-sm-6">
+                                            {{ field|attr:"class:form-control" }}
+                                            {% if field.help_text %}
+                                                <p class="help-block"><small>{{ field.help_text }}</small></p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-3">
+                                    <button
+                                        name="btnSave"
+                                        type="submit"
+                                        class="btn btn-primary"
+                                        id="btnSave"
+                                        data-toggle="confirmation"
+                                        data-btn-ok-class="btn-success"
+                                        data-btn-cancel-class="btn-danger"
+                                        data-title="Submit Confirmation"
+                                        data-content="Did you double check your form?"
+                                        data-btn-ok-label="Yes, submit" data-btn-ok-icon="glyphicon glyphicon-ok"
+                                        data-btn-cancel-label="No, cancel" data-btn-cancel-icon="glyphicon glyphicon-remove"
+                                    >
+                                    <span class="glyphicon glyphicon-save" aria-hidden="true"></span>&nbsp;{{ submit_form }}
+                                    </button>
+                                </div>
+                                <div class="col-sm-offset-1 col-sm-5">
+                                    <a class="btn btn-default"
+                                        href="{% url 'app_id_form:select_form_type' %}"
+                                        data-toggle="confirmation"
+                                    ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Cancel Your Form</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+{% endblock content %}

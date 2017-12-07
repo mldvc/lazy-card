@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n widget_tweaks %}
+
+{% block customCSS %}
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link href="{% static 'cards-overview-style.css' %}" rel="stylesheet">
+{% endblock customCSS %}
+
+{% block content %}
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container" id="cards-overview-container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <a href="{% url 'app_cards:app_print_record:record_report' %}" class="btn btn-default">Switch to Record Report</a>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-container container-fluid">
+                            <div class="row">
+                                <form class="form-inline" role="form" action="" method="GET">
+                                    {% csrf_token %}
+                                    <div class="col-md-12">
+                                        {% for field in searchForm %}
+                                            {% if field.errors %}
+                                                <div class="form-group has-error">
+                                                    <label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>
+                                                    {{ field|attr:"class:form-control" }}
+                                                    <span class="help-block">
+                                                    {% for error in  field.errors %}{{ error }}{% endfor %}
+                                                    </span>
+                                                </div>
+                                                    {% if field.label == 'To' %}
+                                                        <button name="btnToday" type="button" class="btn btn-xs" id="btnToday">Today</button>
+                                                    {% endif %}
+                                            {% else %}
+                                                <div class="form-group">
+                                                    <label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>
+                                                    {{ field|attr:"class:form-control" }}
+                                                    {% if field.help_text %}
+                                                        <p class="help-block"><small>{{ field.help_text }}</small></p>
+                                                    {% endif %}
+
+                                                    {% if field.label == 'To' %}
+                                                        <button name="btnToday" type="button" class="btn btn-xs" id="btnToday">Today</button>
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    <div class="form-group">
+                                        <button name="btnPreview" type="submit" class="btn btn-info"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;{% trans "Preview" %}</button>
+                                        <button id="btn_print" name="btnPrint" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-print" aria-hidden="true"></span>&nbsp;{% trans "Print" %}</button>
+                                    </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="section_to_print">
+                    <div class="col-lg-12">
+                           <table class="report_table">
+                                <caption class="report_caption">ID PRINT REPORT • {{ reportDate }}</caption>
+                                <thead>
+                                    <tr>
+                                        <th>DATE</th>
+                                        <th>ID TYPE</th>
+                                        <th>SUCCESS</th>
+                                        <th>ERROR</th>
+                                        <th>TOTAL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for k, v in objDict.items %}
+                                        {% for key, value in v.items %}
+                                            <tr>
+                                                <td>
+                                                    {% if key == 'COL' %}
+                                                        {{ k }}
+                                                    {% endif %}
+                                                </td>
+                                                    {% if key != 'total' %}
+                                                        {% for tk, tv in dictIDType.items %}
+                                                            {% if tk == key %}
+                                                                <td>{{ tv }}</td>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                        {% for item in value %}
+                                                            <td>{{ item }}</td>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        <td></td>
+                                                        {% for item in value %}
+                                                            <td class="total">{{ item }}</td>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                            </tr>
+                                        {% endfor %}
+                                    {% endfor %}
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td class="total">TOTAL PRINT</td>
+                                        <td></td>
+                                        <td class="total">{{ OASuccess }}</td>
+                                        <td class="total">{{ OAError }}</td>
+                                        <td class="total">{{ OATotal }}</td>
+                                    </tr>
+                                    {% for k, v in dictCardsTotal.items %}
+                                        <tr>
+                                            <td class="total">{{ k }}&nbsp;Stocks</td>
+                                            <td class="total">{{ v }}</td>
+                                        </tr>                
+                                    {% endfor %}
+                                </tfoot>
+                            </table>
+
+                            <table class="report_table">
+                                <caption class="report_caption">RIBBON USAGE REPORT • {{ reportDate }}</caption>
+                                <thead>
+                                    <tr>
+                                        <th>RIBBON No.</th>
+                                        <th>RIBBON TYPE</th>
+                                        <th>RIBBON PRINTER</th>
+                                        <th>USED DATE</th>
+                                        <th>STATUS</th>
+                                        <th>TOTAL PRINTED</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for ribbon in ribbonObj %}
+                                        <tr>
+                                            <td>{{ ribbon.ribbon_number }}</td>
+                                            <td>{{ ribbon.ribbon_type }}</td>
+                                            <td>{{ ribbon.ribbon_printer }}</td>
+                                            <td>{{ ribbon.ribbon_use_date }}</td>
+                                            <td>
+                                            {% if ribbon.ribbon_status == 'E'  %}
+                                                Empty
+                                            {% else %}
+                                                Active
+                                            {% endif %}
+                                            </td>
+                                            <td>{{ ribbon.ribbon_total_printed }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td class="total">TOTAL USED</td>
+                                        <td class="total">{{ ribbonTotalUsed }}</td>
+                                    </tr>
+                                    {% for type in ribbonStockObj  %}
+                                    <tr>
+                                        <td class="total">{{ type.ribbon_type }}&nbsp;Stocks</td>
+                                        <td class="total">{{ type.amount }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tfoot>
+                            </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+{% endblock content %}
